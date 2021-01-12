@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+  background: #1a1a1c;
+  color: #d7d7d7;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 64px;
+  color: #d7d7d7;
+}
+
+.currency-input {
+  padding-left: 16px;
+  width: 300px;
+  height: 50px;
+  border-radius: 4px;
+  background-image: linear-gradient(-255deg, #272924 0%, #49502b 48%, #4f6820 100%);
+  color: #d7d7d7;
+}
+
+.currency-input::placeholder {
+  color: #d7d7d7;
+}
+
+.currency-container {
+  display: flex;
+  justify-content: center;
+}
+
+.currency-search {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.arrow {
+  width: 15px;
+  height: 15px;
+}
+
+img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.currency-symbol {
+  text-transform: uppercase;
+}
+
+.red {
+  color: #f00606;
+}
+
+.green {
+  color: #11d811;
+}
+
+td, tr {
+  padding: 15px 30px;
+}
