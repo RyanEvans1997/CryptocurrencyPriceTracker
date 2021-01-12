@@ -2,6 +2,8 @@ import './css/App.css';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import Currency from './Currency';
+// https://distracted-lumiere-7704fd.netlify.app/
+console.log('test');
 
 function App() {
 
