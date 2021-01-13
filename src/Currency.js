@@ -15,7 +15,7 @@ const Currency = ({name, image, symbol, price, volume, priceChange, marketcap}) 
                 </td>
 
                 <td>
-                    £{price}
+                    {price}
                 </td>
 
                 <td>
@@ -34,11 +34,11 @@ const Currency = ({name, image, symbol, price, volume, priceChange, marketcap}) 
                 </td>
 
                 <td>
-                    £{volume.toLocaleString()}
+                    {volume.toLocaleString()}
                 </td>
 
                 <td>
-                    £{marketcap.toLocaleString()}
+                    {marketcap.toLocaleString()}
                 </td>
             </tr>
      );

@@ -3,14 +3,16 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 import Currency from './Currency';
 // https://distracted-lumiere-7704fd.netlify.app/
-console.log('test');
+// npm run git -- "Message of the commit"
 
 function App() {
 
   const[currency, setCurrencys] = useState([]);
-  const [search, setSearch] = useState([]);
+  const[search, setSearch] = useState([]);
+  const[currencyType, setCurrencyType] = useState("GBP");
+  const[refresh, setRefresh] = useState(10);
 
-  const geckoAPI = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=250&page=1&sparkline=false'
+  const geckoAPI = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=250&page=1&sparkline=false';
 
   useEffect(() => {
     axios.get(geckoAPI)
@@ -22,8 +24,30 @@ function App() {
     })
   }, [])
 
+  useEffect(() => {
+    axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyType}&order=market_cap_desc&per_page=250&page=1&sparkline=false`)
+    .then(res => {
+      setCurrencys(res.data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  },
+  [currencyType, refresh])
+
+  useEffect(() => {
+    setInterval(() => {
+      let counter = Math.floor(Math.random() * 9999999);
+      setRefresh(counter);
+    }, 5000)
+  }, [])
+
   const handleChange = e => {
       setSearch(e.target.value);
+  }
+  
+  const handleCurrency = (e) => {
+    setCurrencyType(e.target.value);
   }
 
   const filteredCurrencys = currency.filter(currency => 
@@ -37,9 +61,13 @@ function App() {
     <div className="app-layout">
       <h1>Today's Cryptocurrency overview</h1>
       <div className="currency-search">
+        
       <form>
         <input type="text" placeholder="&#128269; Search" className="currency-input" onChange={handleChange} />
       </form>
+      </div>
+      <div className="intro">
+        <p><i>CryptoPrices is a cryptocurrency price tracker that displays the top 250 by Market Cap. Prices by default are set to Great British Pounds (GBP) which you can change on the dropdown menu by the price column header. In the above Search bar, you can search by the currency name or its symbol. The webpage will automatically reload every 10 seconds to accommodate market volatility.</i></p>
       </div>
       <table>
       <thead>
@@ -63,7 +91,11 @@ function App() {
             <td>
                 <div className="label-price">
                     <p>
-                        price (£)
+                        price
+                        <select value={currencyType} onChange={handleCurrency} multiple={false}>
+                          <option value='GBP'>GBP</option>
+                          <option value='USD'>USD</option>
+                        </select>
                     </p>
                 </div>
             </td>
@@ -79,7 +111,7 @@ function App() {
             <td>
                 <div className="label-volume">
                     <p>
-                        volume (£)
+                        volume (currency)
                     </p>
                 </div>
             </td>
@@ -87,7 +119,7 @@ function App() {
             <td>
                 <div className="label-marketcap">
                     <p>
-                    Mkt Cap (£)
+                    Mkt Cap (currency)
                     </p>
                 </div>
             </td>

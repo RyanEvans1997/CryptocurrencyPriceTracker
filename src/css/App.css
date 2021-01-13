@@ -69,3 +69,18 @@ img {
 td, tr {
   padding: 15px 30px;
 }
+
+thead {
+  text-transform: capitalize;
+  font-weight: 800;
+}
+
+.intro {
+  margin-bottom: 50px;
+  margin-top: 50px;
+  width: 50%;
+}
+
+select {
+  margin-left: 20px;
+}
