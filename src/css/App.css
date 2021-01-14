@@ -6,6 +6,7 @@
   font-family: 'Nunito', sans-serif;
   background: #1a1a1c;
   color: #d7d7d7;
+  text-decoration: none;
 }
 
 .app-layout {
@@ -83,4 +84,8 @@ thead {
 
 select {
   margin-left: 20px;
+}
+
+span {
+  font-weight: 700;
 }

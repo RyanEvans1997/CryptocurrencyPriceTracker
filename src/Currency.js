@@ -1,13 +1,20 @@
 import './css/App.css';
 import redarrow from './imgs/redarrow.png'
 import greenarrow from './imgs/greenarrow.png'
+// import { Chart } from 'react-charts';
+import React from 'react';
 
 const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, currencyType}) => {
+    const handleLink = (e) => {
+        console.log(e.target.innerHTML);
+    }
     return ( 
             <tr className="table-row">
                 <td>
                     <img src={image} alt="cryptocurrency" />
-                    <span>{name}</span>
+                    <a href={name} onClick={handleLink}>
+                        <span>{name}</span>
+                    </a>
                 </td>
 
                 <td>
@@ -34,13 +41,14 @@ const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, c
                 </td>
 
                 <td>
-                    {volume.toLocaleString()}
+                {currencyType} {volume.toLocaleString()}
                 </td>
 
                 <td>
-                    {marketcap.toLocaleString()}
+                {currencyType} {marketcap.toLocaleString()}
                 </td>
             </tr>
+            
      );
 }
  

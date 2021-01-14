@@ -15,6 +15,7 @@ $greenArrow: #11d811;
   font-family: 'Nunito', sans-serif;
   background: #1a1a1c;
   color: $mainColor;
+  text-decoration: none;
 }
 
 .app-layout {
@@ -91,5 +92,8 @@ select {
   margin-left: 20px;
 }
 
+span {
+  font-weight: 700;
+}
 
 

@@ -2,7 +2,9 @@ import './css/App.css';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import Currency from './Currency';
-// https://distracted-lumiere-7704fd.netlify.app/
+import CurrencyDetails from './CurrencyDetails';
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// https://cryptoprices-cryptocurrency.netlify.app/
 // npm run git -- "Message of the commit"
 
 function App() {
@@ -94,8 +96,12 @@ function App() {
   const filteredSymbols = currency.filter(currency => 
     currency.symbol.toLowerCase().includes(search.toString().toLowerCase())
     )
+
   return (
-    <div className="app-layout">
+    <Router>
+      <Switch>
+        <Route path="/" exact>
+        <div className="app-layout">
       <h1>Today's Cryptocurrency overview</h1>
       <div className="currency-search">
         
@@ -175,7 +181,7 @@ function App() {
             <td>
                 <div className="label-volume">
                     <p>
-                        volume (currency)
+                        volume
                     </p>
                 </div>
             </td>
@@ -183,7 +189,7 @@ function App() {
             <td>
                 <div className="label-marketcap">
                     <p>
-                    Mkt Cap (currency)
+                    Mkt Cap
                     </p>
                 </div>
             </td>
@@ -208,9 +214,16 @@ function App() {
             )
         )
       }
+  )
       </tbody>
       </table>
     </div>
+        </Route>
+        <Route path="/:id">
+          <CurrencyDetails />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
