@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 
 const IndividualCurrency = ({name}) => {
     const [isLoading, setLoading] = useState(true);
-    const [currency, setCurrency] = useState([]);
+    const [currency, setCurrency] = useState();
     const individual = window.location.href.slice(22,).toLowerCase();
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const IndividualCurrency = ({name}) => {
       .catch(error => {
         console.log(error);
       })
-    }, [])
+    }, [individual])
 
     if (isLoading) {
       return <div>Loading...</div>
