@@ -11,6 +11,41 @@ function App() {
   const[search, setSearch] = useState([]);
   const[currencyType, setCurrencyType] = useState("GBP");
   const[refresh, setRefresh] = useState(10);
+  const[CurrencySymbol, setCurrencySymbol] = useState("£");
+
+  const AllCurrencies = {
+    "USD": "$",
+    "AUD": "$",
+    "BRL": "R$",
+    "CAD": "$",
+    "CHF": "Fr",
+    "CLP": "$",
+    "CNY": "¥",
+    "CZK": "Kč",
+    "DKK": "kr",
+    "EUR": "€",
+    "GBP": "£",
+    "HKD": "$",
+    "HUF": "Ft",
+    "IDR": "Rp",
+    "ILS": "₪",
+    "INR": "₹",
+    "JPY": "¥",
+    "KRW": "₩",
+    "MNX": "$",
+    "NOK": "kr",
+    "NZD": "$",
+    "PHP": "₱",
+    "PKR": "$",
+    "PLN": "zł",
+    "RUB": "₽",
+    "SEK": "kr",
+    "SGD": "S$",
+    "THB": "฿",
+    "TRY": "₺",
+    "TWD": "NT$",
+    "ZAR": "R"  
+}
 
   const geckoAPI = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=250&page=1&sparkline=false';
 
@@ -48,6 +83,8 @@ function App() {
   
   const handleCurrency = (e) => {
     setCurrencyType(e.target.value);
+    console.log(AllCurrencies[e.target.value]);
+    setCurrencySymbol(AllCurrencies[e.target.value]);
   }
 
   const filteredCurrencys = currency.filter(currency => 
@@ -93,8 +130,35 @@ function App() {
                     <p>
                         price
                         <select value={currencyType} onChange={handleCurrency} multiple={false}>
+                          <option value='AUD'>AUD</option>
+                          <option value='BRL'>BRL</option>
+                          <option value='CAD'>CAD</option>
+                          <option value='CHF'>CHF</option>
+                          <option value='CLP'>CLP</option>
+                          <option value='CNY'>CNY</option>
+                          <option value='CZK'>CZK</option>
+                          <option value='DKK'>DKK</option>
+                          <option value='EUR'>EUR</option>
                           <option value='GBP'>GBP</option>
-                          <option value='USD'>USD</option>
+                          <option value='HKD'>HKD</option>
+                          <option value='HUF'>HUF</option>
+                          <option value='ILS'>ILS</option>
+                          <option value='INR'>INR</option>
+                          <option value='JPY'>JPY</option>
+                          <option value='KRW'>KRW</option>
+                          <option value='MXN'>MXN</option>
+                          <option value='MYR'>MYR</option>
+                          <option value='NOK'>NOK</option>
+                          <option value='NZD'>NZD</option>
+                          <option value='PHP'>PHP</option>
+                          <option value='PLN'>PLN</option>
+                          <option value='RUB'>RUB</option>
+                          <option value='SEK'>SEK</option>
+                          <option value='SGD'>SGD</option>
+                          <option value='THB'>THB</option>
+                          <option value='TRY'>TRY</option>
+                          <option value='TWD'>TWD</option>
+                          <option value='ZAR'>ZAR</option>
                         </select>
                     </p>
                 </div>
@@ -132,13 +196,13 @@ function App() {
 
         filteredSymbols.length >= filteredCurrencys.length ? filteredSymbols.map(currency => {
           return (
-            <Currency key={currency.id} name={currency.name} image={currency.image} symbol={currency.symbol} marketcap={currency.market_cap} price={currency.current_price} priceChange={currency.price_change_percentage_24h} volume={currency.total_volume} />
+            <Currency key={currency.id} name={currency.name} image={currency.image} symbol={currency.symbol} marketcap={currency.market_cap} price={currency.current_price} priceChange={currency.price_change_percentage_24h} volume={currency.total_volume} currencyType={CurrencySymbol} />
             )
           }
         ) : (
             filteredCurrencys.map(currency => {
               return (
-                <Currency key={currency.id} name={currency.name} image={currency.image} symbol={currency.symbol} marketcap={currency.market_cap} price={currency.current_price} priceChange={currency.price_change_percentage_24h} volume={currency.total_volume} />
+                <Currency key={currency.id} name={currency.name} image={currency.image} symbol={currency.symbol} marketcap={currency.market_cap} price={currency.current_price} priceChange={currency.price_change_percentage_24h} volume={currency.total_volume} currencyType={CurrencySymbol}/>
                 )
               }
             )

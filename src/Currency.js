@@ -2,7 +2,7 @@ import './css/App.css';
 import redarrow from './imgs/redarrow.png'
 import greenarrow from './imgs/greenarrow.png'
 
-const Currency = ({name, image, symbol, price, volume, priceChange, marketcap}) => {
+const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, currencyType}) => {
     return ( 
             <tr className="table-row">
                 <td>
@@ -15,7 +15,7 @@ const Currency = ({name, image, symbol, price, volume, priceChange, marketcap}) 
                 </td>
 
                 <td>
-                    {price}
+                    {currencyType} {price.toLocaleString()}
                 </td>
 
                 <td>
