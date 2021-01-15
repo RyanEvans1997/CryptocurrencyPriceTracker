@@ -89,3 +89,43 @@ select {
 span {
   font-weight: 700;
 }
+
+.container {
+  text-align: center;
+}
+
+.description {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 15%;
+  width: 85%;
+}
+
+.navBar {
+  display: flex;
+  padding-left: 15%;
+  padding-top: 2%;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.details {
+  text-transform: uppercase;
+}
+
+span:hover {
+  color: gray;
+}
+
+.detailsTable {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.endOfPage {
+  padding-bottom: 10%;
+}
+
+.generalInfo {
+  padding-bottom: 4%;
+}

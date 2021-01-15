@@ -3,28 +3,23 @@ import redarrow from './imgs/redarrow.png'
 import greenarrow from './imgs/greenarrow.png'
 // import { Chart } from 'react-charts';
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, currencyType}) => {
-    const handleLink = (e) => {
-        console.log(e.target.innerHTML);
-    }
     return ( 
             <tr className="table-row">
                 <td>
                     <img src={image} alt="cryptocurrency" />
-                    <a href={name} onClick={handleLink}>
+                    <Link to={name}>
                         <span>{name}</span>
-                    </a>
+                    </Link>
                 </td>
-
                 <td>
                     <p className="currency-symbol">{symbol}</p>
                 </td>
-
                 <td>
                     {currencyType} {price.toLocaleString()}
                 </td>
-
                 <td>
                     {priceChange < 0 ? (
                             <p className="currency-percent red">
@@ -39,11 +34,9 @@ const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, c
                         )
                     }
                 </td>
-
                 <td>
                 {currencyType} {volume.toLocaleString()}
                 </td>
-
                 <td>
                 {currencyType} {marketcap.toLocaleString()}
                 </td>
