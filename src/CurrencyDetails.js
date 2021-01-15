@@ -5,7 +5,10 @@ import './css/App.css';
 const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
     const [isLoading, setLoading] = useState(true);
     const [currency, setCurrency] = useState();
-    const individual = window.location.href.slice(22,).toLowerCase();
+
+    const individual = window.location.href.includes('http://localhost:3000/') ? window.location.href.slice(22,).toLowerCase() : window.location.href.slice(47,).toLowerCase()
+
+
 
     useEffect(() => {
       axios.get(`https://api.coingecko.com/api/v3/coins/${individual}`)
