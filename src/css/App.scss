@@ -135,3 +135,75 @@ span:hover {
 .generalInfo {
   padding-bottom: 4%;
 }
+
+.table-row {
+  td {
+    border-top: 2px solid rgba(95, 90, 90, 0.918);
+  }
+}
+
+
+@media only screen and (max-width: 360px) {
+  h1 {
+    font-size: 1.2em;
+  }
+
+  .currency-input {
+    height: 35px;
+  }
+
+  .introParagraph {
+    padding-bottom: 4%;
+    position: relative;
+    right: 50px;
+    font-size: 0.75em;
+    width: 300px;
+  }
+
+  .intro {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  table {
+    font-size: 0.5em;
+    display: inline-block;
+    overflow: auto;
+    width: 350px;
+  }
+
+  select {
+    text-align: center;
+    margin-left: 0px;
+  }
+
+  .navBar {
+    padding-left: 5%;
+  }
+
+  h3 {
+    font-size: 0.85em;
+  }
+
+  .description {
+    padding-top: 5%;
+    position: relative;
+    right: 20px;
+    font-size: 0.8em;
+    width: 350px;
+  }
+
+  .generalInfo {
+    padding-top: 5%;
+    padding-bottom: 10%;
+    font-size: 1.2em;
+  }
+
+  .detailsTable {
+    font-size: 0.6em;
+    display: inline-block;
+    overflow: auto;
+    width: 400px;
+  }
+
+}
