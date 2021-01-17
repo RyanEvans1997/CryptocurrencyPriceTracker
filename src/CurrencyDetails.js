@@ -6,11 +6,28 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
     const [isLoading, setLoading] = useState(true);
     const [currency, setCurrency] = useState();
 
-    const individual = window.location.href.includes('http://localhost:3000/') ? window.location.href.slice(22,).toLowerCase() : window.location.href.slice(47,).toLowerCase()
+    let individual = window.location.href.includes('http://localhost:3000/') ? window.location.href.slice(22,).toLowerCase() : window.location.href.slice(47,).toLowerCase();
+
+    function numberWithCommas(x) {
+      if(Boolean(x)) {
+        return currentCurrencySymbol + x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+      } else {
+        return  "N/A";
+      }
+    }
 
 
 
     useEffect(() => {
+      if (individual === "xrp") {
+        individual = "xrp-bep2"
+      } else if (individual === "binance%20coin") {
+        individual = individual.replace("%20", "");
+        console.log(individual);
+      } else {
+        individual = individual.replace("%20", "-");
+        console.log(individual);
+      }
       axios.get(`https://api.coingecko.com/api/v3/coins/${individual}`)
       .then((res) => {
         setCurrency(res.data);
@@ -70,25 +87,25 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
             <tbody>
               <tr>
               <td>
-              {currentCurrencySymbol} {currency.market_data.current_price[currentCurrencyType].toLocaleString()}
+               {numberWithCommas(currency.market_data.current_price[currentCurrencyType])}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.ath[currentCurrencyType].toLocaleString()}
+               {numberWithCommas(currency.market_data.ath[currentCurrencyType])}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.ath_change_percentage[currentCurrencyType].toLocaleString()}
+               {numberWithCommas(currency.market_data.ath_change_percentage[currentCurrencyType])}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.ath_date[currentCurrencyType].toLocaleString()}
+              {currency.market_data.ath_date[currentCurrencyType]}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.atl[currentCurrencyType].toLocaleString()}
+               {numberWithCommas(currency.market_data.atl[currentCurrencyType])}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.atl_change_percentage[currentCurrencyType].toLocaleString()}
+               {numberWithCommas(currency.market_data.atl_change_percentage[currentCurrencyType])}
               </td>
               <td>
-              {currency.market_data.atl_date[currentCurrencyType].toLocaleString()}
+              {currency.market_data.atl_date[currentCurrencyType]}
               </td>
               </tr>
             </tbody>
@@ -123,25 +140,25 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
             <tbody>
               <tr>
               <td>
-              {currentCurrencySymbol} {currency.market_data.market_cap[currentCurrencyType].toLocaleString()}
+              {numberWithCommas(currency.market_data.market_cap[currentCurrencyType])}
               </td>
               <td>
               {currency.market_data.market_cap_rank}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.fully_diluted_valuation[currentCurrencyType].toLocaleString()}
+                 {numberWithCommas(currency.market_data.fully_diluted_valuation[currentCurrencyType])}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.total_volume[currentCurrencyType].toLocaleString()}
+               {numberWithCommas(currency.market_data.total_volume[currentCurrencyType])}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.high_24h[currentCurrencyType].toLocaleString()}
+               {numberWithCommas(currency.market_data.high_24h[currentCurrencyType])}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.low_24h[currentCurrencyType].toLocaleString()}
+               {numberWithCommas(currency.market_data.low_24h[currentCurrencyType])}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.price_change_24h}
+               {currency.market_data.price_change_24h}
               </td>
               </tr>
             </tbody>
@@ -229,25 +246,25 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
             <tbody>
               <tr>
               <td>
-              {currentCurrencySymbol} {currency.market_data.market_cap_change_24h}
+               {numberWithCommas(currency.market_data.market_cap_change_24h)}
               </td>
               <td>
               {currency.market_data.market_cap_change_percentage_24h}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.price_change_24h_in_currency[currentCurrencyType].toLocaleString()}
+               {numberWithCommas(currency.market_data.price_change_24h_in_currency[currentCurrencyType])}
               </td>
               <td>
-              {currency.market_data.price_change_percentage_1h_in_currency[currentCurrencyType].toLocaleString()}
+              {currency.market_data.price_change_percentage_1h_in_currency[currentCurrencyType]}
               </td>
               <td>
-              {currency.market_data.price_change_percentage_24h_in_currency[currentCurrencyType].toLocaleString()}
+              {currency.market_data.price_change_percentage_24h_in_currency[currentCurrencyType]}
               </td>
               <td>
-              {currency.market_data.price_change_percentage_7d_in_currency[currentCurrencyType].toLocaleString()}
+              {currency.market_data.price_change_percentage_7d_in_currency[currentCurrencyType]}
               </td>
               <td>
-              {currency.market_data.price_change_percentage_14d_in_currency[currentCurrencyType].toLocaleString()}
+              {currency.market_data.price_change_percentage_14d_in_currency[currentCurrencyType]}
               </td>
               </tr>
             </tbody>
@@ -282,25 +299,25 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
             <tbody>
               <tr>
               <td>
-              {currency.market_data.price_change_percentage_30d_in_currency[currentCurrencyType].toLocaleString()}
+              {currency.market_data.price_change_percentage_30d_in_currency[currentCurrencyType]}
               </td>
               <td>
-              {currency.market_data.price_change_percentage_60d_in_currency[currentCurrencyType].toLocaleString()}
+              {currency.market_data.price_change_percentage_60d_in_currency[currentCurrencyType]}
               </td>
               <td>
-              {currency.market_data.price_change_percentage_200d_in_currency[currentCurrencyType].toLocaleString()}
+              {currency.market_data.price_change_percentage_200d_in_currency[currentCurrencyType]}
               </td>
               <td>
-              {currency.market_data.price_change_percentage_1y_in_currency[currentCurrencyType].toLocaleString()}
+              {currency.market_data.price_change_percentage_1y_in_currency[currentCurrencyType]}
               </td>
               <td>
-              {currency.market_data.market_cap_change_24h_in_currency[currentCurrencyType].toLocaleString()}
+              {numberWithCommas(currency.market_data.market_cap_change_24h_in_currency[currentCurrencyType])}
               </td>
               <td>
-              {currency.market_data.market_cap_change_percentage_24h_in_currency[currentCurrencyType].toLocaleString()}
+              {currency.market_data.market_cap_change_percentage_24h_in_currency[currentCurrencyType]}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.total_supply.toLocaleString()}
+               {numberWithCommas(currency.market_data.total_supply)}
               </td>
               </tr>
             </tbody>
@@ -323,10 +340,10 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
             <tbody>
               <tr>
               <td>
-              {currentCurrencySymbol} {currency.market_data.max_supply.toLocaleString()}
+               {numberWithCommas(currency.market_data.max_supply)}
               </td>
               <td>
-              {currentCurrencySymbol} {currency.market_data.circulating_supply.toLocaleString()}
+              {numberWithCommas(currency.market_data.circulating_supply)}
               </td>
               <td>
               {currency.market_data.last_updated}
