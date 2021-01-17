@@ -14,7 +14,8 @@ function App() {
   const[currencyType, setCurrencyType] = useState("GBP");
   const[refresh, setRefresh] = useState(10);
   const[CurrencySymbol, setCurrencySymbol] = useState("£");
-  let currencyCurrencyType = currencyType.toLowerCase();
+  let currentCurrencyType = currencyType.toLowerCase();
+
 
   const AllCurrencies = {
     "USD": "$",
@@ -221,7 +222,7 @@ function App() {
     </div>
         </Route>
         <Route path="/:id">
-          <CurrencyDetails currentCurrencyType={currencyCurrencyType} currentCurrencySymbol={CurrencySymbol} />
+          <CurrencyDetails currentCurrencyType={currentCurrencyType} currentCurrencySymbol={CurrencySymbol} />
         </Route>
       </Switch>
     </Router>

@@ -4,13 +4,23 @@ import greenarrow from './imgs/greenarrow.png'
 // import { Chart } from 'react-charts';
 import React from 'react';
 import {Link} from 'react-router-dom';
+import list from './list.json';
+
 
 const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, currencyType}) => {
+
+    // coingecko api uses different names than the actual cryptocurrency.
+    // to get around this, find the symbol of the currency to obtain whatever coingecko uses as its name
+    // differentiate between coingecko definition of currency name and actual name
+    // uses local json to avoid 6k+ axios requests per load
+        let obj = list.find(o => o.symbol === symbol);
+        let linkName = obj.id;
+
     return ( 
             <tr className="table-row">
                 <td>
                     <img src={image} alt="cryptocurrency" />
-                    <Link to={name}>
+                    <Link to={linkName}>
                         <span>{name}</span>
                     </Link>
                 </td>

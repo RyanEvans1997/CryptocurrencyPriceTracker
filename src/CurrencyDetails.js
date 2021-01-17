@@ -16,18 +16,7 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
       }
     }
 
-
-
     useEffect(() => {
-      if (individual === "xrp") {
-        individual = "xrp-bep2"
-      } else if (individual === "binance%20coin") {
-        individual = individual.replace("%20", "");
-        console.log(individual);
-      } else {
-        individual = individual.replace("%20", "-");
-        console.log(individual);
-      }
       axios.get(`https://api.coingecko.com/api/v3/coins/${individual}`)
       .then((res) => {
         setCurrency(res.data);
