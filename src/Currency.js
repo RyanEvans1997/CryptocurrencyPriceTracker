@@ -63,7 +63,7 @@ const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, c
                 {currencyType} {marketcap.toLocaleString()}
                 </td>
                 <td>
-                    <img className="currencyGraph" src={`https://crypto.com/price/coin-data/${graphname}/sparkline.png`}></img>
+                    <img className="currencyGraph" alt="" src={`https://crypto.com/price/coin-data/${graphname}/sparkline.png`}></img>
                 </td>
             </tr>
             
