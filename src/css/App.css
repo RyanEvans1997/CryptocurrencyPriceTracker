@@ -134,6 +134,11 @@ span:hover {
   border-top: 2px solid rgba(95, 90, 90, 0.918);
 }
 
+.currencyGraph {
+  width: 96px;
+  height: 24px;
+}
+
 @media only screen and (max-width: 360px) {
   h1 {
     font-size: 1.2em;

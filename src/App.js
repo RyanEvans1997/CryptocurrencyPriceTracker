@@ -196,6 +196,12 @@ function App() {
                     </p>
                 </div>
             </td>
+
+            <td>
+              <p>
+                7D Chart
+              </p>
+            </td>
         </tr>
       </thead>
         <tbody>

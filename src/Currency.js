@@ -1,10 +1,10 @@
 import './css/App.css';
 import redarrow from './imgs/redarrow.png'
 import greenarrow from './imgs/greenarrow.png'
-// import { Chart } from 'react-charts';
 import React from 'react';
 import {Link} from 'react-router-dom';
 import list from './list.json';
+import {graph} from './graphstuff';
 
 
 const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, currencyType}) => {
@@ -15,6 +15,18 @@ const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, c
     // uses local json to avoid 6k+ axios requests per load
         let obj = list.find(o => o.symbol === symbol);
         let linkName = obj.id;
+
+        let graphname;
+
+        // console.log(graph['polkadot']);
+        if (name.toLowerCase() in graph) {
+            graphname = graph[name.toLowerCase()];
+        } else if (/\s/.test(name)) {
+            graphname = name.replace(/\s+/g, '-').toLowerCase();
+        } else {
+            graphname = name.toLowerCase();
+        }
+        
 
     return ( 
             <tr className="table-row">
@@ -49,6 +61,9 @@ const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, c
                 </td>
                 <td>
                 {currencyType} {marketcap.toLocaleString()}
+                </td>
+                <td>
+                    <img className="currencyGraph" src={`https://crypto.com/price/coin-data/${graphname}/sparkline.png`}></img>
                 </td>
             </tr>
             
