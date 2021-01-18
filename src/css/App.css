@@ -139,9 +139,15 @@ span:hover {
   height: 24px;
 }
 
+p {
+  margin-bottom: 50px;
+}
+
 h2 {
-  padding-bottom: 40px;
-  color: white;
+  padding-bottom: 50px;
+  font-weight: 800;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.486);
 }
 
 .detailsTable {
@@ -150,6 +156,7 @@ h2 {
 
 .detailsTable td {
   border-top: 2px solid rgba(95, 90, 90, 0.918);
+  border-bottom: 2px solid rgba(95, 90, 90, 0.918);
 }
 
 .detailsTable td:hover {
@@ -157,7 +164,7 @@ h2 {
 }
 
 .detailsTable th {
-  font-weight: 400;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 360px) {
