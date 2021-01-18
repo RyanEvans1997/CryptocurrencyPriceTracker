@@ -47,7 +47,7 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
 
           <div className="description">
             {
-              <p dangerouslySetInnerHTML={{__html: currency.description.en}} >
+              <p className="introDescription" dangerouslySetInnerHTML={{__html: currency.description.en}} >
                 </p>
             }
           </div>
@@ -283,18 +283,8 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
           </table>
 
           <h2>Last Updated</h2>
-          <table className="detailsTable endOfPage">
-            <thead>
+          <p>{formatDate(currency.market_data.last_updated)}</p>
 
-            </thead>
-            <tbody>
-              <tr>
-              <td>
-              {formatDate(currency.market_data.last_updated)}
-              </td>
-              </tr>
-              </tbody>
-          </table>
           </div>
     );
 }

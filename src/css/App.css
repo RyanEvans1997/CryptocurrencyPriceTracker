@@ -139,15 +139,15 @@ span:hover {
   height: 24px;
 }
 
-p {
-  margin-bottom: 50px;
-}
-
 h2 {
   padding-bottom: 50px;
   font-weight: 800;
   font-style: italic;
   color: rgba(255, 255, 255, 0.486);
+}
+
+.introDescription {
+  margin-bottom: 50px;
 }
 
 .detailsTable {
@@ -167,56 +167,49 @@ h2 {
   font-weight: 600;
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 539px) {
   h1 {
-    font-size: 1.2em;
-  }
-  .currency-input {
-    height: 35px;
+    text-align: center;
   }
   .introParagraph {
-    padding-bottom: 4%;
-    position: relative;
-    right: 50px;
-    font-size: 0.75em;
-    width: 300px;
-  }
-  .intro {
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-  table {
-    font-size: 0.5em;
-    display: inline-block;
-    overflow: auto;
-    width: 350px;
-  }
-  select {
     text-align: center;
-    margin-left: 0px;
+    padding-right: 0%;
+    width: 100%;
   }
-  .navBar {
-    padding-left: 5%;
-  }
-  h3 {
-    font-size: 0.85em;
-  }
-  .description {
-    padding-top: 5%;
-    position: relative;
-    right: 20px;
-    font-size: 0.8em;
-    width: 350px;
-  }
-  .generalInfo {
-    padding-top: 5%;
-    padding-bottom: 10%;
-    font-size: 1.2em;
+  .allCurrencies {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
   .detailsTable {
-    font-size: 0.6em;
-    display: inline-block;
-    overflow: auto;
-    width: 400px;
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+
+@media only screen and (min-width: 540px) {
+  h1 {
+    text-align: center;
+  }
+  .introParagraph {
+    text-align: center;
+    padding-right: 0%;
+    width: 100%;
+  }
+  .allCurrencies {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .detailsTable {
+    display: table;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    font-size: 0.8em;
   }
 }

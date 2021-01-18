@@ -112,10 +112,12 @@ function App() {
       </div>
       <div className="intro">
         <p className="introParagraph"><i>CryptoPrices is a cryptocurrency price tracker that displays the top 250 by Market Cap. Prices by default are set to Great British Pounds (GBP) which you can change on the dropdown menu by the price column header. </i></p>
+
+        <br />
           
         <p className="introParagraph"><i>In the above Search bar, you can search by the currency name or its symbol. The webpage will automatically reload every 10 seconds to accommodate market volatility.</i></p>
       </div>
-      <table>
+      <table className="allCurrencies">
       <thead>
       <tr> 
             <td>
