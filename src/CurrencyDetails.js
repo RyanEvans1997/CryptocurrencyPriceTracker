@@ -16,6 +16,13 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
       }
     }
 
+    function formatDate(date) {
+      let year = date.slice(0,4);
+      let month = date.slice(5,7);
+      let day = date.slice(8,10);
+      return(`${day}/${month}/${year}`)
+    }
+
     useEffect(() => {
       axios.get(`https://api.coingecko.com/api/v3/coins/${individual}`)
       .then((res) => {
@@ -45,31 +52,21 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
             }
           </div>
 
-          <h2 className="generalInfo">Detailed overview about {individual}</h2>
-
+          <h2>General price trends</h2>
           <table className="detailsTable">
             <thead>
             <tr>
               <th>
-                Current Price
+              Current Price
               </th>
               <th>
-                All Time High (ATH)
+              Price change (24h)
               </th>
               <th>
-                % since ATH
+              Highest Value (24h)
               </th>
               <th>
-                date of ATH
-              </th>
-              <th>
-                All Time Low (ATL)
-              </th>
-              <th>
-                % since ATL
-              </th>
-              <th>
-                date of ATL
+              Lowest Value (24h)
               </th>
             </tr>
             </thead>
@@ -79,27 +76,63 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
                {numberWithCommas(currency.market_data.current_price[currentCurrencyType])}
               </td>
               <td>
-               {numberWithCommas(currency.market_data.ath[currentCurrencyType])}
+              {numberWithCommas(currency.market_data.price_change_24h)}
               </td>
               <td>
-               {numberWithCommas(currency.market_data.ath_change_percentage[currentCurrencyType])}
+              {numberWithCommas(currency.market_data.high_24h[currentCurrencyType])}
               </td>
               <td>
-              {currency.market_data.ath_date[currentCurrencyType]}
-              </td>
-              <td>
-               {numberWithCommas(currency.market_data.atl[currentCurrencyType])}
-              </td>
-              <td>
-               {numberWithCommas(currency.market_data.atl_change_percentage[currentCurrencyType])}
-              </td>
-              <td>
-              {currency.market_data.atl_date[currentCurrencyType]}
+              {numberWithCommas(currency.market_data.low_24h[currentCurrencyType])}
               </td>
               </tr>
             </tbody>
           </table>
 
+          
+
+          <h2>Volume and supply</h2>
+          <table className="detailsTable">
+            <thead>
+            <tr>
+              <th>
+              Total Volume
+              </th>
+              <th>
+              Fully diulated valuation
+              </th>
+              <th>
+              circulating supply
+              </th>
+              <th>
+              total supply
+              </th>
+              <th>
+              max supply
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <td>
+              {numberWithCommas(currency.market_data.total_volume[currentCurrencyType])}
+              </td>
+              <td>
+              {numberWithCommas(currency.market_data.fully_diluted_valuation[currentCurrencyType])}
+              </td>
+              <td>
+              {numberWithCommas(currency.market_data.circulating_supply)}
+              </td>
+              <td>
+              {numberWithCommas(currency.market_data.total_supply)}
+              </td>
+              <td>
+              {numberWithCommas(currency.market_data.max_supply)}
+              </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>Market Cap information</h2>
           <table className="detailsTable">
             <thead>
             <tr>
@@ -110,19 +143,10 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
                 Market Cap Rank
               </th>
               <th>
-                Fully diulated valuation
+              Market cap change (24h)
               </th>
               <th>
-                Total Volume
-              </th>
-              <th>
-                Highest value in last 24h
-              </th>
-              <th>
-                Lowest Value in last 24h
-              </th>
-              <th>
-                Price change in last 24h
+              market cap change % (24h)
               </th>
             </tr>
             </thead>
@@ -135,47 +159,99 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
               {currency.market_data.market_cap_rank}
               </td>
               <td>
-                 {numberWithCommas(currency.market_data.fully_diluted_valuation[currentCurrencyType])}
+              {numberWithCommas(currency.market_data.market_cap_change_24h)}
               </td>
               <td>
-               {numberWithCommas(currency.market_data.total_volume[currentCurrencyType])}
+              {currency.market_data.market_cap_change_percentage_24h}
+              </td> 
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>ATH Information</h2>
+          <table className="detailsTable">
+            <thead>
+            <tr>
+              <th>
+              All Time High (ATH)
+              </th>
+              <th>
+              % since ATH
+              </th>
+              <th>
+              date of ATH
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <td>
+              {numberWithCommas(currency.market_data.ath[currentCurrencyType])}
               </td>
               <td>
-               {numberWithCommas(currency.market_data.high_24h[currentCurrencyType])}
+              {currency.market_data.ath_change_percentage[currentCurrencyType]}
               </td>
               <td>
-               {numberWithCommas(currency.market_data.low_24h[currentCurrencyType])}
-              </td>
-              <td>
-               {currency.market_data.price_change_24h}
+              {formatDate(currency.market_data.ath_date[currentCurrencyType])}
               </td>
               </tr>
             </tbody>
           </table>
 
+          <h2>ATL information</h2>
           <table className="detailsTable">
             <thead>
             <tr>
               <th>
-                % price change (24h)
+              All Time Low (ATL)
               </th>
               <th>
-                % price change (7d)
+              % since ATL
               </th>
               <th>
-                % price change (14d)
+               Date of ATL
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <td>
+              {numberWithCommas(currency.market_data.atl[currentCurrencyType])}
+              </td>
+              <td>
+              {currency.market_data.atl_change_percentage[currentCurrencyType]}
+              </td>
+              <td>
+              {formatDate(currency.market_data.atl_date[currentCurrencyType])}
+              </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>Price change percentage timeframe</h2>
+          <table className="detailsTable">
+            <thead>
+            <tr>
+              <th>
+              % price change (24h)
               </th>
               <th>
-                % price change (30d)
+              % price change (7d)
               </th>
               <th>
-                % price change (60d)
+              % price change (14d)
               </th>
               <th>
-                % price change (200d)
+              % price change (30d)
               </th>
               <th>
-                % price change (1y)
+              % price change (60d)
+              </th>
+              <th>
+              % price change (200d)
+              </th>
+              <th>
+              % price change (1y)
               </th>
             </tr>
             </thead>
@@ -206,139 +282,18 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
             </tbody>
           </table>
 
-          <table className="detailsTable">
-            <thead>
-            <tr>
-              <th>
-                Market cap change (24h)
-              </th>
-              <th>
-                market cap change % (24h)
-              </th>
-              <th>
-                price change in specific currency (24h)
-              </th>
-              <th>
-                price change % in specific currency (1h)
-              </th>
-              <th>
-                price change % in specific currency (24h)
-              </th>
-              <th>
-                price change % in specific currency (7d)
-              </th>
-              <th>
-                price change % in specific currency (14d)
-              </th>
-            </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <td>
-               {numberWithCommas(currency.market_data.market_cap_change_24h)}
-              </td>
-              <td>
-              {currency.market_data.market_cap_change_percentage_24h}
-              </td>
-              <td>
-               {numberWithCommas(currency.market_data.price_change_24h_in_currency[currentCurrencyType])}
-              </td>
-              <td>
-              {currency.market_data.price_change_percentage_1h_in_currency[currentCurrencyType]}
-              </td>
-              <td>
-              {currency.market_data.price_change_percentage_24h_in_currency[currentCurrencyType]}
-              </td>
-              <td>
-              {currency.market_data.price_change_percentage_7d_in_currency[currentCurrencyType]}
-              </td>
-              <td>
-              {currency.market_data.price_change_percentage_14d_in_currency[currentCurrencyType]}
-              </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <table className="detailsTable">
-            <thead>
-            <tr>
-              <th>
-                price change % in specific currency (30d)
-              </th>
-              <th>
-                price change % in specific currency (60d)
-              </th>
-              <th>
-                price change % in specific currency (200d)
-              </th>
-              <th>
-                price change % in specific currency (1y)
-              </th>
-              <th>
-                market cap change in specific currency (24h)
-              </th>
-              <th>
-                market cap change % in specific currency (24h)
-              </th>
-              <th>
-                total supply
-              </th>
-            </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <td>
-              {currency.market_data.price_change_percentage_30d_in_currency[currentCurrencyType]}
-              </td>
-              <td>
-              {currency.market_data.price_change_percentage_60d_in_currency[currentCurrencyType]}
-              </td>
-              <td>
-              {currency.market_data.price_change_percentage_200d_in_currency[currentCurrencyType]}
-              </td>
-              <td>
-              {currency.market_data.price_change_percentage_1y_in_currency[currentCurrencyType]}
-              </td>
-              <td>
-              {numberWithCommas(currency.market_data.market_cap_change_24h_in_currency[currentCurrencyType])}
-              </td>
-              <td>
-              {currency.market_data.market_cap_change_percentage_24h_in_currency[currentCurrencyType]}
-              </td>
-              <td>
-               {numberWithCommas(currency.market_data.total_supply)}
-              </td>
-              </tr>
-            </tbody>
-          </table>
-
+          <h2>Last Updated</h2>
           <table className="detailsTable endOfPage">
             <thead>
-            <tr>
-              <th>
-                max supply
-              </th>
-              <th>
-                circulating supply
-              </th>
-              <th>
-                last updated
-              </th>
-            </tr>
+
             </thead>
             <tbody>
               <tr>
               <td>
-               {numberWithCommas(currency.market_data.max_supply)}
-              </td>
-              <td>
-              {numberWithCommas(currency.market_data.circulating_supply)}
-              </td>
-              <td>
-              {currency.market_data.last_updated}
+              {formatDate(currency.market_data.last_updated)}
               </td>
               </tr>
-            </tbody>
+              </tbody>
           </table>
           </div>
     );
