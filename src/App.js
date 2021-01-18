@@ -78,7 +78,7 @@ function App() {
     setInterval(() => {
       let counter = Math.floor(Math.random() * 9999999);
       setRefresh(counter);
-    }, 5000)
+    }, 10000)
   }, [])
 
   const handleChange = e => {
@@ -111,11 +111,11 @@ function App() {
       </form>
       </div>
       <div className="intro">
-        <p className="introParagraph"><i>CryptoPrices is a cryptocurrency price tracker that displays the top 250 by Market Cap. Prices by default are set to Great British Pounds (GBP) which you can change on the dropdown menu by the price column header. </i></p>
+        <p className="introParagraph"><i>CryptoPrices is a cryptocurrency price tracker that displays the relevant information for each cryptocurrency via descending Market Cap (only the top 250 is rendered). At default, prices are set to Great British Pounds (GBP) which can be changed on the dropdown menu by the price column header. Further information can be found via clicking on the name of the cryptocurrency.</i></p>
 
         <br />
           
-        <p className="introParagraph"><i>In the above Search bar, you can search by the currency name or its symbol. The webpage will automatically reload every 10 seconds to accommodate market volatility.</i></p>
+        <p className="introParagraph"><i>In the above search bar, you can search by the currency name or its symbol. The webpage will automatically rerender (no need to manually reload window) every 10 seconds to accommodate market volatility.</i></p>
       </div>
       <table className="allCurrencies">
       <thead>
