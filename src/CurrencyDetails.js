@@ -283,7 +283,7 @@ const CurrencyDetails = ({currentCurrencyType, currentCurrencySymbol}) => {
           </table>
 
           <h2>Last Updated</h2>
-          <p>{formatDate(currency.market_data.last_updated)}</p>
+          <p className='endParagraph'>{formatDate(currency.market_data.last_updated)}</p>
 
           </div>
     );

@@ -9,6 +9,10 @@
   text-decoration: none;
 }
 
+html {
+  width: 100%;
+}
+
 .app-layout {
   display: flex;
   flex-direction: column;
@@ -130,6 +134,10 @@ span:hover {
   padding-bottom: 4%;
 }
 
+.table-row {
+  margin: 0 auto;
+}
+
 .table-row td {
   border-top: 2px solid rgba(95, 90, 90, 0.918);
 }
@@ -167,7 +175,11 @@ h2 {
   font-weight: 600;
 }
 
-@media only screen and (max-width: 539px) {
+.endParagraph {
+  padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 480px) and (min-width: 0px) {
   h1 {
     text-align: center;
   }
@@ -190,7 +202,7 @@ h2 {
   }
 }
 
-@media only screen and (min-width: 540px) {
+@media only screen and (max-width: 960px) and (min-width: 481px) {
   h1 {
     text-align: center;
   }
@@ -206,10 +218,6 @@ h2 {
     overflow-y: hidden;
   }
   .detailsTable {
-    display: table;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    font-size: 0.8em;
+    font-size: 0.6em;
   }
 }
