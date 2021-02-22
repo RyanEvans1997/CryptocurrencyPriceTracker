@@ -4,7 +4,7 @@ import greenarrow from './imgs/greenarrow.png'
 import React from 'react';
 import {Link} from 'react-router-dom';
 import list from './list.json';
-import {graph} from './graphstuff';
+import {graph} from './graphData';
 
 
 const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, currencyType}) => {
