@@ -9,12 +9,25 @@ import {graph} from './graphstuff';
 
 const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, currencyType}) => {
 
+    function numberWithCommas(x) {
+        if(Boolean(x)) {
+          return currencyType + x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        } else {
+          return  "N/A";
+        }
+      }
+
     // coingecko api uses different names than the actual cryptocurrency.
     // to get around this, find the symbol of the currency to obtain whatever coingecko uses as its name
     // differentiate between coingecko definition of currency name and actual name
     // uses local json to avoid 6k+ axios requests per load
         let obj = list.find(o => o.symbol === symbol);
-        let linkName = obj.id;
+        let linkName;
+        try {
+            linkName = obj.id;
+        } catch(error) {
+            linkName = null;
+        }
 
         let graphname;
 
@@ -57,10 +70,10 @@ const Currency = ({name, image, symbol, price, volume, priceChange, marketcap, c
                     }
                 </td>
                 <td>
-                {currencyType} {volume.toLocaleString()}
+                {numberWithCommas(volume)}
                 </td>
                 <td>
-                {currencyType} {marketcap.toLocaleString()}
+                {numberWithCommas(marketcap)}
                 </td>
                 <td>
                     <img className="currencyGraph" alt="" src={`https://crypto.com/price/coin-data/${graphname}/sparkline.png`}></img>
